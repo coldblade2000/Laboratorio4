@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from typing import Optional
 import pandas as pd
-import DataModel
+from DataModel import DataModel
 from joblib import load
 
 app = FastAPI()
@@ -21,5 +21,5 @@ def make_predictions(dataModel: DataModel):
     df = pd.DataFrame(dataModel.dict(), columns=dataModel.dict().keys(), index=[0])
     df.columns = dataModel.columns()
     model = load("assets/modelo.joblib")
-    result = model.predict(df)
+    result = model.predict(df)[0]
     return result
