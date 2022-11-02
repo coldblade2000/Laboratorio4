@@ -1,11 +1,19 @@
 # Test your FastAPI endpoints
 
-GET http://127.0.0.1:8000/
+GET https://bil4.planni.me/
 Accept: application/json
 
 ###
+POST https://bil4.planni.me/predict
+Content-Type: application/json
 
-GET http://127.0.0.1:8000/hello/User
-Accept: application/json
-
-###
+{
+  "serial_no": 500,
+  "gre_score": 327,
+  "toefl_score": 113,
+  "university_rating": 4,
+  "sop": 2.76,
+  "lor": 4.41,
+  "cgpa": 9.04,
+  "research": 0.5
+}
