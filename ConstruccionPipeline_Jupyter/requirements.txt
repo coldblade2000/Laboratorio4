@@ -1,0 +1,6 @@
+pandas-profiling
+ipywidgets
+imblearn
+seaborn
+unidecode
+markupsafe==2.0.1
