@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "32ca6a0b-7104-4f4d-be8c-7362c6daf944",
+		"name": "Laboratorio 4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24217628"
+	},
+	"item": [
+		{
+			"name": "(/) HelloWorld",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Hello World\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "(/predict) Prediction particular",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"serial_no\": 500,\r\n  \"gre_score\": 327,\r\n  \"toefl_score\": 113,\r\n  \"university_rating\": 4,\r\n  \"sop\": 2.76,\r\n  \"lor\": 4.41,\r\n  \"cgpa\": 9.04,\r\n  \"research\": 0.5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/predict",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"predict"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "(/predict) Prediction",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"The success state is as expected\", function () {\r",
+							"    const success = pm.iterationData.get(\"success\")\r",
+							"    if(success == 1){\r",
+							"        pm.expect(pm.response.code).to.eql(200);\r",
+							"    }else{\r",
+							"        pm.expect(pm.response.code).to.not.eql(200);\r",
+							"    }\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"serial_no\": {{serial_no}},\r\n  \"gre_score\": {{gre_score}},\r\n  \"toefl_score\": {{toefl_score}},\r\n  \"university_rating\": {{university_rating}},\r\n  \"sop\": {{sop}},\r\n  \"lor\": {{lor}},\r\n  \"cgpa\": {{cgpa}},\r\n  \"research\": {{research}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/predict",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"predict"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "currentbody",
+			"value": "{\n  \"serial_no\": 500,\n  \"gre_score\": 327,\n  \"toefl_score\": 113,\n  \"university_rating\": 4,\n  \"sop\": 2.76,\n  \"lor\": 4.41,\n  \"cgpa\": 9.04,\n  \"research\": 0\n}",
+			"type": "string"
+		},
+		{
+			"key": "serial_no",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "gre_score",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "toefl_score",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "university_rating",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "sop",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "lor",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "cgpa",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "research",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "success",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
